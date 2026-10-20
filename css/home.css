@@ -359,3 +359,18 @@
     grid-template-columns: 7fr 5fr;
   }
 }
+
+/* ---------- 섹션 등장 (design-guide 9번) ----------
+ * js/home.js가 html에 .js-reveal을 붙일 때만 숨긴다 — 스크립트가 없으면 내용이 그대로 보인다. */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(var(--space-24));
+  transition:
+    opacity var(--duration-slow) var(--easing),
+    transform var(--duration-slow) var(--easing);
+}
+
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
