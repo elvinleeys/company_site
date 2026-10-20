@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>원두 소개 | 어떤원두</title>
+  <meta name="description" content="어떤원두의 원두를 맛으로 둘러보고 비교해 보세요. 산미·고소함·단맛·쓴맛·바디감을 쉬운 말로 알려드려요.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="css/beans.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="어떤원두 메인으로">
+        <span class="logo-mark" aria-hidden="true">?</span>
+        <span class="logo-text">어떤원두</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="주 메뉴">
+        <ul>
+          <li><a href="../taste-test/index.html">취향 테스트</a></li>
+          <li><a href="index.html" aria-current="page">원두 소개</a></li>
+          <li><a href="../subscription/index.html">구독 안내</a></li>
+          <li><a href="../story/index.html">브랜드 스토리</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary" href="../taste-test/index.html">내 원두 찾기</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="icon icon-open"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="icon icon-close"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">원두 소개</p>
+        <h1>어떤 맛이 궁금하세요?</h1>
+        <p class="lead">커피 이름이 낯설어도 괜찮아요. 맛을 쉬운 말로 풀어서, 한눈에 비교할 수 있게 모았어요.</p>
+        <div class="hero-actions">
+          <a class="btn btn-secondary" href="#compare">맛 비교하기</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="list-title">
+      <div class="container">
+        <h2 id="list-title" class="section-title">
+          <span class="q-badge" aria-hidden="true">?</span>
+          오늘은 어떤 맛이 당기세요?
+        </h2>
+
+        <div class="filters" role="group" aria-label="맛으로 골라보기" id="filters"></div>
+        <p class="result-count" id="result-count" role="status" aria-live="polite"></p>
+
+        <ul class="bean-grid" id="bean-grid"></ul>
+
+        <!-- 예시 데이터 안내 (TODO(확인 필요): 실제 원두 자료로 교체) -->
+        <p class="caption">※ 원두 정보와 가격은 예시이고, 가격은 원두 200g 기준이에요.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="compare" aria-labelledby="compare-title">
+      <div class="container">
+        <h2 id="compare-title" class="section-title">
+          <span class="q-badge" aria-hidden="true">?</span>
+          맛은 어떻게 다를까요?
+        </h2>
+        <p class="lead">점이 많을수록 그 맛이 진해요. 5개 중 몇 개가 채워졌는지로 비교해 보세요.</p>
+
+        <dl class="glossary" id="glossary"></dl>
+
+        <div class="compare-wrap">
+          <table class="compare" id="compare-table"></table>
+        </div>
+
+        <p class="cta-line">
+          고르기 어렵다면, 질문 몇 개로 찾아드려요.
+          <a class="btn btn-text" href="../taste-test/index.html">취향 테스트 해보기</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">어떤원두</p>
+      <p>취향 질문과 시음 후기로 나에게 맞는 커피를 골라 매달 집으로 보내드려요.</p>
+      <!-- TODO(확인 필요): 문의 연락처, 사업자 정보 -->
+      <p class="footer-info">대표 정하준 · 2023년 9월 설립</p>
+      <p class="footer-info">이 사이트는 수업용 가상 서비스입니다.</p>
+    </div>
+  </footer>
+
+  <dialog class="bean-dialog" id="bean-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-body" id="dialog-body"></div>
+  </dialog>
+
+  <script src="js/beans-data.js"></script>
+  <script src="js/beans.js"></script>
+</body>
+</html>
