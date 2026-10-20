@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>브랜드 스토리 — 어떤원두</title>
+  <meta name="description" content="질문 하나로 시작한 커피 구독 서비스, 어떤원두의 이야기">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/illustration.css">
+  <link rel="stylesheet" href="../css/story.css">
+</head>
+<body>
+  <!-- 수업용 가상 회사입니다. 등장하는 회사·인물·수치는 모두 지어낸 것입니다. -->
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <!--
+    손그림 일러스트 필터
+    - ill-paint: 아래에 살짝 어긋나게 까는 색 번짐 층. 가장자리를 붓처럼 흔들고 종이 결을 입힌다.
+    - ill-sketch: 위 층(색 면 + 선). 펜으로 그은 듯 살짝 흔들고 옅은 종이 결을 입힌다.
+  -->
+  <svg class="visually-hidden" aria-hidden="true" focusable="false">
+    <filter id="ill-paint" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="wobble"/>
+      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="5" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="9" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.7 1.2" result="grainAlpha"/>
+      <feComposite in="shape" in2="grainAlpha" operator="in"/>
+    </filter>
+    <filter id="ill-sketch" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="5" result="wobble"/>
+      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="2.5" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="9" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.35 1.15" result="grainAlpha"/>
+      <feComposite in="shape" in2="grainAlpha" operator="in"/>
+    </filter>
+  </svg>
+
+  <!-- ========== 헤더 ========== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="../index.html" aria-label="어떤원두 홈">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M10 11a6 6 0 1 1 9 5.2c-1.9 1.1-3 2.4-3 4.3v.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="16" cy="27" rx="2.6" ry="3.2" transform="rotate(30 16 27)" fill="currentColor"/>
+        </svg>
+        <span>어떤원두</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기">
+        <svg class="icon menu-toggle__open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon menu-toggle__close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../taste-test/index.html">취향 테스트</a></li>
+          <li><a class="site-nav__link" href="../beans/index.html">원두 소개</a></li>
+          <li><a class="site-nav__link" href="../subscription/index.html">구독 안내</a></li>
+          <li><a class="site-nav__link" href="index.html" aria-current="page">브랜드 스토리</a></li>
+        </ul>
+      </nav>
+
+      <a class="button button--primary site-header__cta" href="../taste-test/index.html">내 원두 찾기</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ========== 도입 ========== -->
+    <section class="story-intro" aria-labelledby="story-title">
+      <div class="container story-intro__inner">
+        <div>
+          <p class="caption">브랜드 스토리</p>
+          <h1 id="story-title">질문 하나로 시작한<br>커피 이야기</h1>
+          <p class="story-intro__desc">
+            어떤원두가 어떻게 시작됐고, 어떻게 자라왔고,
+            무엇을 지키고 싶은지 들려드릴게요.
+          </p>
+        </div>
+
+        <!-- 일러스트: 원두 선반 앞에서 고민하는 사람 -->
+        <svg class="ill ill--hero" viewBox="0 0 420 360" role="img" aria-label="원두 선반 앞에서 원두 봉투를 들고 어떤 걸 고를지 고민하는 사람 그림">
+          <defs>
+            <g id="art-hero">
+              <ellipse class="c-latte nl" cx="220" cy="344" rx="186" ry="12"/>
+              <!-- 화분 -->
+              <path class="c-leaf" d="M62 300C50 272 40 262 32 240C52 246 62 268 62 300Z"/>
+              <path class="c-leaf" d="M62 300C66 264 76 248 94 238C94 264 80 284 62 300Z"/>
+              <path class="c-leaf" d="M62 300C56 270 58 244 64 220C76 244 72 276 62 300Z"/>
+              <path class="ln thin" d="M58 290C52 272 46 262 40 250M66 290C72 272 80 258 88 248M62 292C62 268 63 248 64 232"/>
+              <path class="c-border" d="M42 300H82L77 342H47Z"/>
+              <path class="ln thin" d="M44 312H80"/>
+              <!-- 선반 -->
+              <rect class="c-latte" x="262" y="96" width="130" height="246" rx="6"/>
+              <rect class="c-roast" x="254" y="86" width="146" height="12" rx="4"/>
+              <path class="ln" d="M262 176H392M262 258H392"/>
+              <path class="c-roast" d="M272 134Q287 128 302 134L304 176H270Z"/>
+              <rect class="c-cream" x="279" y="148" width="18" height="15" rx="2"/>
+              <path class="ln thin" d="M273 141Q287 136 301 141"/>
+              <path class="c-border" d="M312 126Q327 120 342 126L344 176H310Z"/>
+              <rect class="c-cream" x="318" y="142" width="18" height="17" rx="2"/>
+              <path class="ln thin" d="M313 133Q327 128 341 133"/>
+              <rect class="c-cream" x="354" y="140" width="28" height="36" rx="7"/>
+              <rect class="c-roast" x="351" y="131" width="34" height="10" rx="3"/>
+              <ellipse class="c-roast" cx="362" cy="160" rx="3.5" ry="2.5" transform="rotate(-20 362 160)"/>
+              <ellipse class="c-roast" cx="373" cy="165" rx="3.5" ry="2.5" transform="rotate(25 373 165)"/>
+              <ellipse class="c-roast" cx="365" cy="170" rx="3.5" ry="2.5" transform="rotate(10 365 170)"/>
+              <path class="c-border" d="M272 220Q286 214 300 220L302 258H270Z"/>
+              <path class="ln thin" d="M273 227Q286 222 299 227"/>
+              <path class="c-roast" d="M308 210Q324 204 340 210L342 258H306Z"/>
+              <rect class="c-cream" x="315" y="226" width="18" height="16" rx="2"/>
+              <path class="ln thin" d="M309 217Q324 212 339 217"/>
+              <path class="c-cream" d="M350 224Q366 218 382 224L384 258H348Z"/>
+              <path class="ln thin" d="M351 231Q366 226 381 231"/>
+              <rect class="c-roast" x="274" y="296" width="106" height="46" rx="4"/>
+              <path class="ln thin" d="M274 312H380M274 327H380"/>
+              <!-- 사람: 다리와 신발 -->
+              <path class="c-roast" d="M146 246L142 328Q150 332 158 328L164 252Z"/>
+              <path class="c-roast" d="M170 252L176 328Q184 332 192 328L190 246Z"/>
+              <path class="c-espresso" d="M134 332Q136 322 150 324L160 326Q162 338 150 338H138Q132 337 134 332Z"/>
+              <path class="c-espresso" d="M174 332Q176 322 188 324L200 327Q202 338 190 338H178Q172 337 174 332Z"/>
+              <!-- 오른팔: 몸통보다 먼저 그려 어깨가 몸통 뒤로 자연스럽게 이어지게 -->
+              <path class="c-latte" d="M184 162Q212 176 218 202Q222 212 230 206Q234 180 228 154L216 152Q218 176 214 184Q206 168 190 158Z"/>
+              <!-- 몸통 -->
+              <rect class="c-cream" x="157" y="140" width="16" height="20" rx="4"/>
+              <path class="c-latte" d="M136 162Q165 150 194 162Q204 200 198 256Q168 262 136 256Q128 210 136 162Z"/>
+              <path class="c-cream" d="M151 156L165 172L179 156Q165 151 151 156Z"/>
+              <path class="ln thin" d="M139 246Q167 252 196 246"/>
+              <!-- 왼팔: 몸통 옆으로 자연스럽게 내린 팔 -->
+              <path class="c-latte" d="M138 166Q122 200 124 236Q130 244 140 240Q140 208 148 182Z"/>
+              <circle class="c-cream" cx="132" cy="244" r="8"/>
+              <!-- 머리 -->
+              <circle class="c-cream" cx="138" cy="122" r="7"/>
+              <circle class="c-cream" cx="166" cy="116" r="30"/>
+              <path class="c-espresso" d="M134 118C128 82 160 72 182 82C198 90 202 108 197 122C190 106 180 98 166 100C154 102 146 96 142 92C140 104 138 112 134 118Z"/>
+              <ellipse class="ink" cx="164" cy="121" rx="2.4" ry="3.2"/>
+              <ellipse class="ink" cx="181" cy="121" rx="2.4" ry="3.2"/>
+              <path class="ln thin" d="M157 111Q162 107 168 109M176 108Q181 106 186 110"/>
+              <path class="ln thin" d="M167 135Q170 133 173 135Q176 137 179 135"/>
+              <ellipse class="blush" cx="156" cy="129" rx="5.5" ry="3.5"/>
+              <ellipse class="blush" cx="189" cy="129" rx="5" ry="3.5"/>
+              <!-- 원두 봉투를 든 손 -->
+              <path class="c-roast" d="M206 104Q222 98 238 104L240 146H204Z"/>
+              <rect class="c-cream" x="213" y="118" width="18" height="15" rx="2"/>
+              <ellipse class="ink" cx="222" cy="125.5" rx="3" ry="4" transform="rotate(20 222 125.5)"/>
+              <path class="ln thin" d="M207 111Q222 106 237 111"/>
+              <circle class="c-cream" cx="222" cy="150" r="8.5"/>
+              <!-- 생각 구름 -->
+              <circle class="c-cream" cx="130" cy="80" r="4"/>
+              <circle class="c-cream" cx="116" cy="64" r="7"/>
+              <path class="c-question" d="M62 48C52 46 52 30 64 28C64 16 80 12 88 20C96 10 112 16 110 30C120 32 120 48 108 50C104 62 88 62 84 56C76 64 62 60 62 48Z"/>
+              <path class="ln bold" d="M79 31a7.5 7.5 0 1 1 11 6.5c-2.5 1.5-3.5 3-3.5 5.5"/>
+              <circle class="ink" cx="86.5" cy="50" r="2.8"/>
+            </g>
+          </defs>
+          <use href="#art-hero" class="ill-paint" transform="translate(3 3)"/>
+          <use href="#art-hero" class="ill-ink"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ========== 01 시작 ========== -->
+    <!-- TODO(확인 필요): 아래 창업 계기 문장은 브랜드 컨셉을 바탕으로 쓴 초안. 실제 창업 이야기로 교체 필요 -->
+    <section class="section chapter" aria-labelledby="origin-title">
+      <div class="container chapter__inner">
+        <div class="chapter__head">
+          <span class="chapter__label">01 시작</span>
+          <h2 id="origin-title">원두 앞에서 멈칫했던 순간</h2>
+        </div>
+        <div class="chapter__body">
+          <p>
+            커피는 매일 마시는데, 원두를 고르는 일은 늘 어려웠어요.
+            낯선 이름과 어려운 설명 사이에서 결국 아무거나 고르곤 했죠.
+          </p>
+          <blockquote class="pull-quote">
+            커피를 몰라도, 내 입맛에 맞는 원두를 찾을 수는 없을까?
+          </blockquote>
+          <p>
+            2023년 9월, 이 질문에 답해보려고 어떤원두가 시작됐어요.
+            그래서 이름도 질문이에요.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 02 변화 ========== -->
+    <section class="section chapter" aria-labelledby="growth-title">
+      <div class="container chapter__inner">
+        <div class="chapter__head">
+          <span class="chapter__label">02 변화</span>
+          <h2 id="growth-title">함께 자라온 길</h2>
+
+          <!-- 일러스트: 테이블에서 커피잔으로 건배하는 두 사람 -->
+          <svg class="ill ill--chapter" viewBox="0 0 400 280" role="img" aria-label="테이블에 마주 앉아 커피잔을 맞대며 웃는 두 사람 그림">
+            <defs>
+              <g id="art-team">
+                <!-- 하트 -->
+                <path class="c-crema" d="M200 66C194 56 180 60 184 72L200 86L216 72C220 60 206 56 200 66Z"/>
+                <!-- 왼쪽 사람 (팔은 몸통보다 먼저 그려 어깨 이음새가 보이지 않게) -->
+                <path class="c-leaf" d="M150 172Q186 170 194 146L182 138Q176 156 150 156Z"/>
+                <path class="c-leaf" d="M60 228C60 178 84 152 120 150C156 152 178 178 178 228Z"/>
+                <path class="ln thin" d="M108 152Q120 166 132 152M86 228Q88 204 96 190"/>
+                <circle class="c-cream" cx="92" cy="112" r="6"/>
+                <circle class="c-cream" cx="120" cy="108" r="30"/>
+                <path class="c-espresso" d="M90 106C86 72 120 66 140 74C154 80 156 96 151 106C144 92 130 86 116 90C106 92 98 96 90 106Z"/>
+                <path class="ln thin" d="M109 113Q113 109 117 113M127 113Q131 109 135 113"/>
+                <path class="ln thin" d="M115 124Q121 130 127 124"/>
+                <ellipse class="blush" cx="106" cy="121" rx="5" ry="3.5"/>
+                <ellipse class="blush" cx="140" cy="121" rx="5" ry="3.5"/>
+                <path class="c-cream" d="M178 112H204L200 138Q191 142 182 138Z"/>
+                <path class="ln" d="M204 118Q212 118 211 126Q210 132 202 131"/>
+                <circle class="c-cream" cx="187" cy="142" r="8"/>
+                <!-- 오른쪽 사람 -->
+                <path class="c-roast" d="M246 114C240 70 320 70 314 114L318 172Q300 178 292 162H268Q260 178 242 172Z"/>
+                <path class="c-border" d="M250 172Q214 170 206 146L218 138Q224 156 250 156Z"/>
+                <path class="c-border" d="M222 228C222 180 244 154 280 152C316 154 338 180 338 228Z"/>
+                <path class="ln thin" d="M232 196Q280 188 330 196M226 214Q280 206 336 214"/>
+                <circle class="c-cream" cx="280" cy="112" r="30"/>
+                <path class="c-roast" d="M250 110C250 80 310 80 310 110C302 96 292 92 282 96C272 92 258 96 250 110Z"/>
+                <path class="ln thin" d="M265 117Q269 113 273 117M283 117Q287 113 291 117"/>
+                <path class="ln thin" d="M272 128Q278 134 284 128"/>
+                <ellipse class="blush" cx="260" cy="125" rx="5" ry="3.5"/>
+                <ellipse class="blush" cx="298" cy="125" rx="5" ry="3.5"/>
+                <path class="c-latte" d="M196 114H222L218 140Q209 144 200 140Z"/>
+                <path class="ln" d="M196 120Q188 120 189 128Q190 134 198 133"/>
+                <circle class="c-cream" cx="213" cy="144" r="8"/>
+                <!-- 건배 표시 -->
+                <path class="ln thin" d="M200 104V94M188 106L182 99M212 106L218 99"/>
+                <!-- 테이블 -->
+                <rect class="c-roast" x="30" y="222" width="340" height="13" rx="5"/>
+                <path class="ln" d="M64 235V274M336 235V274"/>
+              </g>
+            </defs>
+            <use href="#art-team" class="ill-paint" transform="translate(3 3)"/>
+            <use href="#art-team" class="ill-ink"/>
+          </svg>
+        </div>
+
+        <!-- 예시 데이터: 아래 연혁 중 2023년 9월 설립과 2026년 9월 기준 수치 외의 항목(시점·내용)은 임의로 만든 예시. 확정 아님 -->
+        <ol class="timeline">
+          <li class="timeline__item">
+            <span class="timeline__date">2023년 9월</span>
+            <h3 class="timeline__title">어떤원두 시작</h3>
+            <p class="timeline__desc">서울의 로스터리 다섯 곳과 함께, 모바일 웹에서 첫 구독을 시작했어요.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__date">2024년 4월</span>
+            <h3 class="timeline__title">시음 후기를 듣기 시작했어요</h3>
+            <p class="timeline__desc">마셔본 느낌을 남겨주시면, 다음 달 원두를 고를 때 참고하기 시작했어요.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__date">2024년 11월</span>
+            <h3 class="timeline__title">iOS·Android 앱 출시</h3>
+            <p class="timeline__desc">앱에서도 취향 테스트부터 구독 관리까지 할 수 있게 됐어요.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__date">2025년 6월</span>
+            <h3 class="timeline__title">서울 밖 로스터리와도 손잡았어요</h3>
+            <p class="timeline__desc">경기와 다른 지역 로스터리까지 함께하며, 더 다양한 원두를 소개하게 됐어요.</p>
+          </li>
+          <li class="timeline__item timeline__item--now">
+            <span class="timeline__date">2026년 9월 기준</span>
+            <h3 class="timeline__title">약 1만 2천 명과 함께해요</h3>
+            <p class="timeline__desc">이제는 모바일 웹과 iOS·Android 앱에서 어떤원두를 만날 수 있어요.</p>
+            <!-- TODO(확인 필요): 팀 인원·제휴 로스터리 수의 기준 시점 -->
+            <ul class="now-stats" aria-label="지금의 어떤원두">
+              <li>제휴 로스터리 약 60곳</li>
+              <li>팀 24명</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== 03 가치 ========== -->
+    <section class="section chapter" aria-labelledby="values-title">
+      <div class="container chapter__inner">
+        <div class="chapter__head">
+          <span class="chapter__label">03 가치</span>
+          <h2 id="values-title">우리가 지키고 싶은 것</h2>
+        </div>
+        <ul class="values">
+          <li class="value">
+            <!-- 일러스트: 말풍선에 과일 조각을 그려 보이며 쉬운 말로 묻는 사람 -->
+            <svg class="ill ill--value" viewBox="0 0 200 140" aria-hidden="true">
+              <defs>
+                <g id="art-value-ask">
+                  <path class="c-leaf" d="M22 140C24 116 38 106 56 106C74 106 88 116 90 140Z"/>
+                  <circle class="c-cream" cx="56" cy="82" r="24"/>
+                  <path class="c-roast" d="M32 80C28 56 78 52 80 76C72 64 60 62 50 66C42 64 36 70 32 80Z"/>
+                  <circle class="ink" cx="65" cy="84" r="2.4"/>
+                  <path class="ln thin" d="M61 96Q66 100 72 95"/>
+                  <ellipse class="blush" cx="72" cy="91" rx="4.5" ry="3"/>
+                  <path class="c-cream" d="M108 20H176Q188 20 188 32V74Q188 86 176 86H126L106 102L112 86H108Q96 86 96 74V32Q96 20 108 20Z"/>
+                  <circle class="c-crema" cx="142" cy="53" r="21"/>
+                  <circle class="c-latte" cx="142" cy="53" r="15"/>
+                  <path class="ln thin" d="M142 38V68M127 53H157M131.4 42.4L152.6 63.6M152.6 42.4L131.4 63.6"/>
+                </g>
+              </defs>
+              <use href="#art-value-ask" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-value-ask" class="ill-ink"/>
+            </svg>
+            <h3>쉬운 말로 물어요</h3>
+            <p class="value__desc">"산미" 대신 "과일 같은 상큼한 맛"처럼, 누구나 답할 수 있게 여쭤봐요.</p>
+          </li>
+          <li class="value">
+            <!-- 일러스트: 손바닥 위에 원두 봉투를 올려 건네는 모습 -->
+            <svg class="ill ill--value" viewBox="0 0 200 140" aria-hidden="true">
+              <defs>
+                <g id="art-value-suggest">
+                  <path class="c-roast" d="M0 100L52 86L60 116L0 130Z"/>
+                  <path class="c-cream" d="M50 84L60 118L68 116L58 82Z"/>
+                  <path class="c-cream" d="M62 88C82 80 108 82 122 92C128 98 122 104 112 102L96 100C104 108 98 118 86 118L66 116Z"/>
+                  <path class="ln thin" d="M96 100Q90 98 84 99"/>
+                  <path class="c-border" d="M78 44Q96 38 114 44L118 94H74Z"/>
+                  <path class="ln thin" d="M79 51Q96 46 113 51"/>
+                  <rect class="c-cream" x="86" y="60" width="20" height="18" rx="2"/>
+                  <ellipse class="ink" cx="96" cy="69" rx="3.5" ry="4.5" transform="rotate(20 96 69)"/>
+                  <path class="c-cream" d="M146 28Q148 38 158 40Q148 42 146 52Q144 42 134 40Q144 38 146 28Z"/>
+                  <path class="c-cream" d="M164 62Q165 68 171 69Q165 70 164 76Q163 70 157 69Q163 68 164 62Z"/>
+                  <circle class="ink" cx="132" cy="68" r="2"/>
+                </g>
+              </defs>
+              <use href="#art-value-suggest" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-value-suggest" class="ill-ink"/>
+            </svg>
+            <h3>정답 대신 제안해요</h3>
+            <p class="value__desc">"이 원두가 잘 맞을 것 같아요." 고르는 건 언제나 마시는 분의 몫이에요.</p>
+          </li>
+          <li class="value">
+            <!-- 일러스트: 커피잔과 시음 노트, 연필 -->
+            <svg class="ill ill--value" viewBox="0 0 200 140" aria-hidden="true">
+              <defs>
+                <g id="art-value-listen">
+                  <path class="c-cream" d="M102 26L170 18L178 104L110 112Z"/>
+                  <path class="ln thin" d="M114 42L160 37M115 56L162 51M116 70L150 66M117 84L158 80"/>
+                  <path class="c-crema" d="M160 92C157 87 150 89 152 95L160 101L168 95C170 89 163 87 160 92Z"/>
+                  <path class="c-border" d="M150 124L186 88L194 96L158 132Z"/>
+                  <path class="c-roast" d="M150 124L158 132L144 136Z"/>
+                  <ellipse class="c-border" cx="60" cy="116" rx="44" ry="9"/>
+                  <path class="c-cream" d="M28 70H92Q90 110 60 112Q30 110 28 70Z"/>
+                  <ellipse class="c-roast" cx="60" cy="70" rx="32" ry="6"/>
+                  <path class="ln" d="M92 78Q106 78 104 90Q102 98 89 96"/>
+                  <path class="steam" d="M50 58C45 50 55 46 50 38M66 58C61 50 71 46 66 38"/>
+                </g>
+              </defs>
+              <use href="#art-value-listen" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-value-listen" class="ill-ink"/>
+            </svg>
+            <h3>마셔본 느낌을 들어요</h3>
+            <p class="value__desc">시음 후기를 남겨주시면, 다음 달 원두를 고를 때 꼭 참고해요.</p>
+          </li>
+          <li class="value">
+            <!-- 일러스트: 차양이 있는 작은 동네 로스터리 -->
+            <svg class="ill ill--value" viewBox="0 0 200 140" aria-hidden="true">
+              <defs>
+                <g id="art-value-roastery">
+                  <rect class="c-cream" x="40" y="48" width="120" height="84"/>
+                  <rect class="c-roast" x="34" y="30" width="132" height="20" rx="3"/>
+                  <ellipse class="c-cream" cx="100" cy="40" rx="6" ry="4.5" transform="rotate(-20 100 40)"/>
+                  <path class="ln thin" d="M96 43Q100 40 104 37"/>
+                  <path class="c-crema" d="M34 50H166V62Q158 72 150 62Q142 72 134 62Q126 72 118 62Q110 72 102 62Q94 72 86 62Q78 72 70 62Q62 72 54 62Q46 72 38 62L34 62Z"/>
+                  <path class="ln thin" d="M54 50V62M70 50V62M86 50V62M102 50V62M118 50V62M134 50V62M150 50V62"/>
+                  <rect class="c-latte" x="50" y="80" width="26" height="28" rx="2"/>
+                  <path class="ln thin" d="M63 80V108M50 94H76"/>
+                  <rect class="c-latte" x="124" y="80" width="26" height="28" rx="2"/>
+                  <path class="ln thin" d="M137 80V108M124 94H150"/>
+                  <path class="c-roast" d="M88 132V90Q88 82 96 82H104Q112 82 112 90V132Z"/>
+                  <circle class="ink" cx="106" cy="108" r="1.8"/>
+                  <path class="c-leaf" d="M174 120C166 110 166 98 172 90C180 100 180 112 174 120Z"/>
+                  <path class="c-leaf" d="M174 120C178 108 186 102 194 102C192 112 184 118 174 120Z"/>
+                  <path class="c-border" d="M166 118H184L181 132H169Z"/>
+                  <path class="ln" d="M14 132H192"/>
+                </g>
+              </defs>
+              <use href="#art-value-roastery" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-value-roastery" class="ill-ink"/>
+            </svg>
+            <h3>로스터리와 함께해요</h3>
+            <p class="value__desc">동네 로스터리의 아늑함을 담아, 제휴 로스터리에서 볶은 원두를 전해요.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== 회사 기본 정보 ========== -->
+    <section class="section chapter" aria-labelledby="company-title">
+      <div class="container">
+        <h2 id="company-title">어떤원두는 이런 회사예요</h2>
+        <dl class="info-list">
+          <div class="info-item">
+            <dt>설립</dt>
+            <dd><span class="info-item__value">2023년 9월</span></dd>
+          </div>
+          <div class="info-item">
+            <dt>대표</dt>
+            <dd><span class="info-item__value">정하준</span></dd>
+          </div>
+          <div class="info-item">
+            <dt>팀</dt>
+            <dd>
+              <span class="info-item__value">24명</span>
+              <span class="caption info-item__note">개발 8 · 디자인 3 · PO 2 · 마케팅 4 · 운영·CS 5 · 경영지원 2</span>
+            </dd>
+          </div>
+          <div class="info-item">
+            <dt>제휴 로스터리</dt>
+            <dd>
+              <span class="info-item__value">약 60곳</span>
+              <span class="caption info-item__note">서울 25 · 경기 15 · 기타 20</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ========== 마무리 행동 ========== -->
+    <section class="section section--flush-top" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="story-cta">
+          <!-- 일러스트: 집에 도착한 원두 상자 옆에서 커피를 마시는 사람 -->
+          <svg class="ill ill--cta" viewBox="0 0 380 250" role="img" aria-label="집에 도착한 원두 상자 옆에 앉아 따뜻한 커피를 마시는 사람 그림">
+            <defs>
+              <g id="art-home">
+                <ellipse class="c-border nl" cx="190" cy="232" rx="176" ry="10"/>
+                <!-- 사람 -->
+                <path class="c-crema" d="M78 208C76 160 88 132 110 130C132 132 144 160 142 208Z"/>
+                <path class="ln thin" d="M100 132Q110 144 120 132"/>
+                <path class="c-roast" d="M48 224C54 200 92 194 110 200C128 194 166 200 172 224Q110 238 48 224Z"/>
+                <ellipse class="c-cream" cx="58" cy="224" rx="10" ry="6"/>
+                <ellipse class="c-cream" cx="162" cy="224" rx="10" ry="6"/>
+                <circle class="c-espresso" cx="110" cy="62" r="11"/>
+                <circle class="c-cream" cx="110" cy="98" r="28"/>
+                <path class="c-espresso" d="M82 96C80 66 140 66 138 96C130 80 118 76 110 80C100 76 88 82 82 96Z"/>
+                <path class="ln thin" d="M97 102Q101 106 105 102M115 102Q119 106 123 102"/>
+                <path class="ln thin" d="M104 114Q110 118 116 114"/>
+                <ellipse class="blush" cx="94" cy="110" rx="5" ry="3.5"/>
+                <ellipse class="blush" cx="126" cy="110" rx="5" ry="3.5"/>
+                <path class="c-cream" d="M96 150H124V172Q124 180 116 180H104Q96 180 96 172Z"/>
+                <path class="ln" d="M124 156Q134 156 134 164Q134 172 124 172"/>
+                <ellipse class="c-cream" cx="94" cy="168" rx="7" ry="8.5"/>
+                <path class="steam" d="M104 142C99 135 109 131 104 124M116 142C111 135 121 131 116 124"/>
+                <!-- 원두 상자 -->
+                <path class="c-roast" d="M226 150L238 134H314L326 150Z"/>
+                <path class="c-cream" d="M250 150L254 96Q272 90 290 96L294 150Z"/>
+                <path class="ln thin" d="M255 104Q272 99 289 104"/>
+                <rect class="c-roast" x="262" y="112" width="20" height="18" rx="2"/>
+                <ellipse class="c-cream" cx="272" cy="121" rx="3.5" ry="4.5" transform="rotate(20 272 121)"/>
+                <path class="c-latte" d="M220 150L196 132L238 126L250 150Z"/>
+                <path class="c-latte" d="M330 150L354 132L312 126L300 150Z"/>
+                <rect class="c-border" x="220" y="150" width="110" height="76" rx="3"/>
+                <path class="ln thin" d="M275 150V170"/>
+                <rect class="c-cream" x="292" y="190" width="28" height="20" rx="2"/>
+                <path class="ln thin" d="M297 197H315M297 203H310"/>
+                <!-- 화분 -->
+                <path class="c-leaf" d="M362 200C354 190 354 178 360 170C368 180 368 192 362 200Z"/>
+                <path class="c-leaf" d="M362 200C366 188 372 182 378 182C377 192 371 198 362 200Z"/>
+                <path class="c-cream" d="M352 200H372L369 226H355Z"/>
+              </g>
+            </defs>
+            <use href="#art-home" class="ill-paint" transform="translate(3 3)"/>
+            <use href="#art-home" class="ill-ink"/>
+          </svg>
+          <h2 id="cta-title">이제 당신의 질문 차례예요</h2>
+          <div class="story-cta__actions">
+            <a class="button button--primary" href="../taste-test/index.html" data-page-primary>내 원두 찾기</a>
+            <a class="button button--text" href="../subscription/index.html">구독 안내 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== 푸터 ========== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <a class="logo" href="../index.html" aria-label="어떤원두 홈">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M10 11a6 6 0 1 1 9 5.2c-1.9 1.1-3 2.4-3 4.3v.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="16" cy="27" rx="2.6" ry="3.2" transform="rotate(30 16 27)" fill="currentColor"/>
+        </svg>
+        <span>어떤원두</span>
+      </a>
+      <p class="site-footer__info">
+        <span>대표 정하준</span>
+        <span>설립 2023년 9월</span>
+        <span>문의 TODO(확인 필요)</span>
+      </p>
+      <p class="caption">수업용 가상 회사입니다. 등장하는 회사·인물·수치는 모두 지어낸 것입니다.</p>
+    </div>
+  </footer>
+
+  <script src="../js/common.js"></script>
+</body>
+</html>

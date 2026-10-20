@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>어떤원두 — 어떤 원두가 내 입맛일까?</title>
+  <meta name="description" content="취향 질문과 시음 후기로 나에게 맞는 커피를 골라 매달 집으로 보내드리는 월간 커피 구독 서비스, 어떤원두">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/illustration.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <!-- 수업용 가상 회사입니다. 등장하는 회사·인물·수치는 모두 지어낸 것입니다. -->
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <!-- 손그림 일러스트 필터 + 원두 마스코트 (그리는 법은 css/illustration.css 상단 참고) -->
+  <svg class="visually-hidden" aria-hidden="true" focusable="false">
+    <filter id="ill-paint" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="wobble"/>
+      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="5" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="9" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.7 1.2" result="grainAlpha"/>
+      <feComposite in="shape" in2="grainAlpha" operator="in"/>
+    </filter>
+    <filter id="ill-sketch" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="5" result="wobble"/>
+      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="2.5" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="9" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.35 1.15" result="grainAlpha"/>
+      <feComposite in="shape" in2="grainAlpha" operator="in"/>
+    </filter>
+    <defs>
+      <!-- 원두 마스코트: (0, 0)이 몸 가운데. 한 손을 흔드는 커피콩 -->
+      <g id="mascot">
+        <path class="ln" d="M-22 2Q-34 0-38-12"/>
+        <path class="ln" d="M21 6Q31 12 33 20"/>
+        <path class="ln" d="M-8 28V38H-14M8 27V37H14"/>
+        <circle class="c-roast" cx="-38" cy="-13" r="3.5"/>
+        <circle class="c-roast" cx="33" cy="21" r="3.5"/>
+        <ellipse class="c-roast" rx="24" ry="30" transform="rotate(-12)"/>
+        <path class="ln-light thin" d="M2-29Q-8-18 0-10"/>
+        <circle class="c-cream" cx="-9" cy="-3" r="5.5"/>
+        <circle class="c-cream" cx="9" cy="-5" r="5.5"/>
+        <circle class="ink" cx="-8" cy="-2" r="2.6"/>
+        <circle class="ink" cx="10" cy="-4" r="2.6"/>
+        <path class="ln-light" d="M-6 8Q0 14 6 7"/>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- ========== 헤더 ========== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html" aria-label="어떤원두 홈">
+        <!-- 로고: 둥글고 두꺼운 물음표 + 커피콩 모양 점 -->
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M10 11a6 6 0 1 1 9 5.2c-1.9 1.1-3 2.4-3 4.3v.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="16" cy="27" rx="2.6" ry="3.2" transform="rotate(30 16 27)" fill="currentColor"/>
+        </svg>
+        <span>어떤원두</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기">
+        <svg class="icon menu-toggle__open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon menu-toggle__close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="taste-test/index.html">취향 테스트</a></li>
+          <li><a class="site-nav__link" href="beans/index.html">원두 소개</a></li>
+          <li><a class="site-nav__link" href="subscription/index.html">구독 안내</a></li>
+          <li><a class="site-nav__link" href="story/index.html">브랜드 스토리</a></li>
+        </ul>
+      </nav>
+
+      <a class="button button--primary site-header__cta" href="taste-test/index.html">내 원두 찾기</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ========== 히어로 ========== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div>
+          <h1 id="hero-title">어떤 원두가<br>내 입맛일까?</h1>
+          <p class="hero__desc">
+            질문 5개면, 내 원두가 정해져요.<br>
+            커피를 잘 몰라도 괜찮아요. 취향 질문과 시음 후기로
+            나에게 맞는 원두를 골라 매달 집으로 보내드려요.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="taste-test/index.html" data-page-primary>내 원두 찾기</a>
+            <a class="button button--secondary" href="beans/index.html">원두 둘러보기</a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+        <!-- 일러스트: 카드 위에 앉은 고양이 (장식) -->
+        <svg class="ill hero-cat" viewBox="0 0 120 110" aria-hidden="true">
+          <defs>
+            <g id="art-cat">
+              <path class="c-border" d="M80 82C98 82 102 96 94 108C92 110 88 108 89 105C95 96 92 89 80 88Z"/>
+              <path class="c-border" d="M38 90C34 66 44 52 60 52C76 52 86 66 82 90Z"/>
+              <path class="c-roast" d="M70 56C80 62 84 74 82 90H74C76 76 74 64 70 56Z"/>
+              <ellipse class="c-cream" cx="52" cy="89" rx="6.5" ry="4"/>
+              <ellipse class="c-cream" cx="68" cy="89" rx="6.5" ry="4"/>
+              <path class="c-roast" d="M43 32L41 13L57 25Z"/>
+              <path class="c-border" d="M77 32L79 13L63 25Z"/>
+              <circle class="c-border" cx="60" cy="40" r="20"/>
+              <path class="c-roast" d="M44 30Q48 22 56 21Q50 28 50 36Q46 34 44 30Z"/>
+              <path class="ln thin" d="M51 41Q54 38 57 41M63 41Q66 38 69 41"/>
+              <path class="ink" d="M58.2 45.5H61.8L60 48Z"/>
+              <path class="ln thin" d="M57 49.5Q58.5 51.5 60 49.5Q61.5 51.5 63 49.5"/>
+              <path class="ln thin" d="M45 45H37M45 49L38 51M75 45H83M75 49L82 51"/>
+              <ellipse class="blush" cx="49" cy="47" rx="4" ry="2.5"/>
+              <ellipse class="blush" cx="71" cy="47" rx="4" ry="2.5"/>
+            </g>
+          </defs>
+          <use href="#art-cat" class="ill-paint" transform="translate(2 2)"/>
+          <use href="#art-cat" class="ill-ink"/>
+        </svg>
+
+        <!-- 일러스트: 카드 뒤에서 빼꼼 내다보는 원두 마스코트 (장식) -->
+        <svg class="ill hero-mascot" viewBox="-44 -44 88 88" aria-hidden="true">
+          <use href="#mascot" class="ill-paint" transform="translate(2 2) rotate(-14)"/>
+          <use href="#mascot" class="ill-ink" transform="rotate(-14)"/>
+        </svg>
+
+        <!-- 취향 테스트 미리보기: 화면 예시 그림이라 보조기기에는 아래 설명 문장만 읽힌다 -->
+        <figure class="test-preview">
+          <figcaption class="caption test-preview__label">이런 질문을 드려요</figcaption>
+          <div aria-hidden="true">
+            <div class="progress">
+              <span class="progress__count">1 / 5</span>
+              <div class="progress__track"><div class="progress__bar"></div></div>
+            </div>
+            <div class="question-bubble">
+              <span class="question-badge">?</span>
+              <p class="question-bubble__text">아침엔 어떤 커피가 당기세요?</p>
+            </div>
+            <ul class="choice-list">
+              <li class="choice">
+                <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M6.3 6.3l11.4 11.4M17.7 6.3L6.3 17.7"/></svg>
+                과일 같은 상큼한 맛
+              </li>
+              <li class="choice is-selected">
+                <svg class="icon" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6" ry="9" transform="rotate(30 12 12)"/><path d="M8.5 17.5c2-1.2 1.8-3.4 3-5s3-1.8 4-3.5"/></svg>
+                고소하고 묵직한 맛
+                <svg class="icon icon--sm choice__check" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>
+              </li>
+              <li class="choice">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M4 9h12v4a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5v2.5M12 3.5v2.5"/></svg>
+                달콤하고 부드러운 맛
+              </li>
+            </ul>
+          </div>
+          <p class="visually-hidden">취향 테스트 화면 예시: "아침엔 어떤 커피가 당기세요?"라는 질문에 상큼한 맛, 고소하고 묵직한 맛, 달콤하고 부드러운 맛 중 하나를 고르는 모습</p>
+        </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 서비스 3단계 ========== -->
+    <section class="section" aria-labelledby="steps-title">
+      <div class="container">
+        <h2 class="section__title" id="steps-title">
+          <span class="question-badge" aria-hidden="true">?</span>
+          어떻게 골라주나요?
+        </h2>
+        <p class="section__lead">어려운 커피 용어는 묻지 않아요. 평소 취향만 알려주세요.</p>
+
+        <ol class="steps">
+          <li class="step">
+            <!-- 일러스트: 휴대폰 화면에서 답을 고르는 손가락 -->
+            <svg class="ill ill--step" viewBox="0 0 200 140" aria-hidden="true">
+              <defs>
+                <g id="art-step-ask">
+                  <ellipse class="c-border nl" cx="100" cy="134" rx="70" ry="5"/>
+                  <rect class="c-roast" x="68" y="8" width="66" height="124" rx="12"/>
+                  <rect class="c-cream" x="75" y="20" width="52" height="98" rx="4"/>
+                  <rect class="c-latte" x="80" y="28" width="36" height="16" rx="6"/>
+                  <path class="ln thin" d="M86 36H108"/>
+                  <rect class="c-border" x="82" y="52" width="40" height="14" rx="7"/>
+                  <rect class="c-question" x="82" y="72" width="40" height="14" rx="7"/>
+                  <path class="ln thin" d="M110 79L113 82L118 76"/>
+                  <rect class="c-border" x="82" y="92" width="40" height="14" rx="7"/>
+                  <!-- 화면을 누르는 손: 검지 → 주먹 → 소매 순서로 겹친다 -->
+                  <path class="c-cream" d="M142 106L124 86Q120 80 126 78Q131 77 134 82L152 102Z"/>
+                  <circle class="c-cream" cx="152" cy="114" r="14"/>
+                  <path class="ln thin" d="M143 116Q148 112 154 115"/>
+                  <path class="c-leaf" d="M150 140L148 124Q160 114 174 122L186 140Z"/>
+                  <path class="ln thin" d="M118 78L112 74M122 72L121 66M128 73L132 68"/>
+                  <use href="#mascot" transform="translate(40 102) scale(0.7)"/>
+                </g>
+              </defs>
+              <use href="#art-step-ask" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-step-ask" class="ill-ink"/>
+            </svg>
+            <span class="step__num">1단계 · 질문</span>
+            <h3>질문 5개에 답해요</h3>
+            <p class="step__desc">"아침엔 어떤 커피가 당기세요?"처럼 일상적인 질문이에요. 커피를 잘 몰라도 답할 수 있어요.</p>
+          </li>
+          <li class="step">
+            <!-- 일러스트: 반짝이는 원두 봉투를 소개하는 원두 마스코트 -->
+            <svg class="ill ill--step" viewBox="0 0 200 140" aria-hidden="true">
+              <defs>
+                <g id="art-step-pick">
+                  <ellipse class="c-border nl" cx="100" cy="134" rx="74" ry="5"/>
+                  <path class="c-cream" d="M110 132L114 54Q134 46 154 54L158 132Z"/>
+                  <path class="ln thin" d="M115 63Q134 56 153 63"/>
+                  <rect class="c-roast" x="122" y="78" width="24" height="24" rx="3"/>
+                  <ellipse class="c-cream" cx="134" cy="90" rx="4.5" ry="6" transform="rotate(20 134 90)"/>
+                  <path class="c-cream" d="M172 30Q174 40 184 42Q174 44 172 54Q170 44 160 42Q170 40 172 30Z"/>
+                  <path class="c-cream" d="M104 30Q105 36 111 37Q105 38 104 44Q103 38 97 37Q103 36 104 30Z"/>
+                  <circle class="ink" cx="186" cy="70" r="2"/>
+                  <path class="c-crema" d="M40 34C37 29 30 31 32 37L40 44L48 37C50 31 43 29 40 34Z"/>
+                  <use href="#mascot" transform="translate(66 92) scale(1.15)"/>
+                </g>
+              </defs>
+              <use href="#art-step-pick" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-step-pick" class="ill-ink"/>
+            </svg>
+            <span class="step__num">2단계 · 추천</span>
+            <h3>잘 맞을 원두를 골라드려요</h3>
+            <p class="step__desc">답해주신 취향과 시음 후기를 바탕으로, 입맛에 맞을 것 같은 원두를 제안해요.</p>
+          </li>
+          <li class="step">
+            <!-- 일러스트: 현관 앞에 도착한 웃는 원두 상자와 달력 -->
+            <svg class="ill ill--step" viewBox="0 0 200 140" aria-hidden="true">
+              <defs>
+                <g id="art-step-deliver">
+                  <rect class="c-cream" x="14" y="16" width="44" height="40" rx="3"/>
+                  <rect class="c-crema" x="14" y="16" width="44" height="10" rx="3"/>
+                  <path class="ln thin" d="M22 34H30M36 34H44M22 44H30M36 44H44"/>
+                  <circle class="ln thin" cx="40" cy="44" r="6"/>
+                  <rect class="c-roast" x="120" y="8" width="58" height="124" rx="2"/>
+                  <rect class="c-latte" x="132" y="22" width="34" height="26" rx="3"/>
+                  <circle class="c-cream" cx="130" cy="76" r="3.5"/>
+                  <path class="c-border" d="M100 132H196L190 138H106Z"/>
+                  <rect class="c-latte" x="38" y="72" width="76" height="12" rx="2"/>
+                  <rect class="c-border" x="42" y="84" width="68" height="48" rx="2"/>
+                  <path class="ln thin" d="M76 72V92"/>
+                  <circle class="ink" cx="64" cy="106" r="2.6"/>
+                  <circle class="ink" cx="88" cy="106" r="2.6"/>
+                  <path class="ln thin" d="M71 113Q76 118 81 113"/>
+                  <ellipse class="blush" cx="57" cy="112" rx="5" ry="3"/>
+                  <ellipse class="blush" cx="95" cy="112" rx="5" ry="3"/>
+                  <path class="ln" d="M6 132H120"/>
+                  <path class="c-leaf" d="M24 132C16 122 16 110 22 102C30 112 30 124 24 132Z"/>
+                  <path class="c-leaf" d="M24 132C28 120 36 114 44 114C42 124 34 130 24 132Z"/>
+                </g>
+              </defs>
+              <use href="#art-step-deliver" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-step-deliver" class="ill-ink"/>
+            </svg>
+            <span class="step__num">3단계 · 매달 배송</span>
+            <h3>매달 집으로 보내드려요</h3>
+            <p class="step__desc">제휴 로스터리에서 볶은 원두를 받아보세요. 마셔본 느낌을 알려주시면 다음 달 원두를 고를 때 참고해요.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== 숫자로 보는 어떤원두 ========== -->
+    <section class="section numbers" aria-labelledby="numbers-title">
+      <div class="container">
+        <h2 id="numbers-title">숫자로 보는 어떤원두</h2>
+        <p class="section__lead">어떤원두는 지금 이만큼 함께하고 있어요.</p>
+
+        <dl class="stats">
+          <div class="stat">
+            <dt class="stat__label">함께하는 구독자</dt>
+            <dd>
+              <span class="stat__value">약 1만 2천 명</span><br>
+              <span class="stat__note">2026년 9월 기준</span>
+            </dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">제휴 로스터리</dt>
+            <dd>
+              <!-- TODO(확인 필요): 제휴 로스터리 수의 기준 시점 -->
+              <span class="stat__value">약 60곳</span><br>
+              <span class="stat__note">서울 25 · 경기 15 · 기타 20</span>
+            </dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">어떤원두 팀</dt>
+            <dd>
+              <!-- TODO(확인 필요): 팀 인원의 기준 시점 -->
+              <span class="stat__value">24명</span><br>
+              <span class="stat__note">개발 · 디자인 · 운영 · CS 등</span>
+            </dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">시작한 날</dt>
+            <dd>
+              <span class="stat__value">2023년 9월</span><br>
+              <span class="stat__note">대표 정하준</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ========== 구독 안내 미리보기 ========== -->
+    <section class="section" aria-labelledby="subscribe-title">
+      <div class="container">
+        <div class="subscribe-card">
+          <div>
+            <h2 id="subscribe-title">한 달에 한 번, 어떻게 받아보나요?</h2>
+            <p class="subscribe-card__desc">
+              내 취향에 맞춰 고른 원두가 매달 집으로 찾아가요.
+              모바일 웹과 iOS·Android 앱에서 구독하고 관리할 수 있어요.
+            </p>
+            <!-- 일러스트: 우편함 위에서 손을 흔드는 원두 마스코트 (장식) -->
+            <svg class="ill ill--subscribe" viewBox="0 0 220 180" aria-hidden="true">
+              <defs>
+                <g id="art-mailbox">
+                  <ellipse class="c-cream nl" cx="110" cy="176" rx="96" ry="5"/>
+                  <rect class="c-roast" x="92" y="128" width="14" height="48" rx="2"/>
+                  <path class="c-crema" d="M54 130V96Q54 72 78 72H118Q142 72 142 96V130Z"/>
+                  <path class="ln" d="M70 104H124"/>
+                  <path class="ln" d="M142 104H152V78"/>
+                  <path class="c-leaf" d="M152 78H170V90H152Z"/>
+                  <path class="c-cream" d="M150 176L153 138Q166 132 180 138L184 176Z"/>
+                  <path class="ln thin" d="M154 145Q166 140 179 145"/>
+                  <rect class="c-roast" x="159" y="152" width="18" height="16" rx="2"/>
+                  <use href="#mascot" transform="translate(96 40)"/>
+                </g>
+              </defs>
+              <use href="#art-mailbox" class="ill-paint" transform="translate(2 2)"/>
+              <use href="#art-mailbox" class="ill-ink"/>
+            </svg>
+          </div>
+          <div class="price">
+            <span class="caption">구독자 평균 구독료</span>
+            <!-- TODO(확인 필요): 평균 구독료의 기준 시점 -->
+            <span class="price__value">월 18,900원</span>
+            <span class="caption">원두 200g 기준</span>
+            <a class="button button--text" href="subscription/index.html">구독 안내 자세히 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="section section--flush-top" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 class="section__title" id="faq-title">
+          <span class="question-badge" aria-hidden="true">?</span>
+          이런 게 궁금하셨죠?
+        </h2>
+
+        <div class="faq-layout">
+        <div class="faq-list">
+          <details class="faq">
+            <summary class="faq__question">
+              커피를 잘 몰라도 괜찮을까요?
+              <svg class="icon faq__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p class="faq__answer">
+              그럼요. 산미(과일처럼 상큼한 신맛)나 바디감(입안에서 느껴지는 묵직함) 같은 용어 대신,
+              "과일 같은 상큼한 맛이 좋으세요, 고소하고 묵직한 맛이 좋으세요?"처럼 평소 취향으로 여쭤봐요.
+            </p>
+          </details>
+          <details class="faq">
+            <summary class="faq__question">
+              추천받은 원두가 입맛에 안 맞으면 어떡하죠?
+              <svg class="icon faq__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p class="faq__answer">
+              마셔본 뒤 시음 후기를 남겨주세요. 남겨주신 후기를 참고해서 다음 달 원두를 다시 골라드려요.
+            </p>
+          </details>
+          <details class="faq">
+            <summary class="faq__question">
+              원두는 어디서 오나요?
+              <svg class="icon faq__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p class="faq__answer">
+              서울, 경기 등 전국 약 60곳의 제휴 로스터리에서 볶은 원두를 보내드려요.
+            </p>
+          </details>
+          <details class="faq">
+            <summary class="faq__question">
+              어디에서 이용할 수 있나요?
+              <svg class="icon faq__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p class="faq__answer">
+              모바일 웹과 iOS·Android 앱에서 이용할 수 있어요.
+            </p>
+          </details>
+        </div>
+
+        <!-- 일러스트: 빈백에 기대 책을 읽는 사람과 잠든 고양이 (장식) -->
+        <svg class="ill ill--faq" viewBox="0 0 300 260" aria-hidden="true">
+          <defs>
+            <g id="art-reading">
+              <ellipse class="c-latte nl" cx="150" cy="246" rx="144" ry="9"/>
+              <!-- 빈백 -->
+              <path class="c-border" d="M40 238C30 190 70 160 120 166C170 160 214 190 204 238Z"/>
+              <!-- 사람: 뒤에 있는 것부터 (뒷머리 → 몸통 → 다리 → 머리 → 팔 → 책 → 손) -->
+              <path class="c-roast" d="M104 116C100 88 152 88 148 116L150 150Q138 152 134 142H118Q114 152 102 150Z"/>
+              <path class="c-leaf" d="M100 222C96 186 104 156 126 152C148 156 156 186 152 222Z"/>
+              <path class="ln thin" d="M116 154Q126 164 136 154"/>
+              <!-- 무릎을 세운 다리 -->
+              <path class="c-roast" d="M120 222C126 200 150 184 176 176C188 172 198 178 198 190L212 232L196 238L182 196C166 204 150 214 140 226Z"/>
+              <ellipse class="c-cream" cx="208" cy="236" rx="13" ry="6"/>
+              <!-- 머리 -->
+              <circle class="c-cream" cx="126" cy="120" r="24"/>
+              <path class="c-roast" d="M102 116C102 92 150 92 150 116C142 104 130 102 126 106C118 102 108 106 102 116Z"/>
+              <path class="ln thin" d="M115 124Q119 127 123 124M131 124Q135 127 139 124"/>
+              <path class="ln thin" d="M122 134Q126 137 130 134"/>
+              <ellipse class="blush" cx="112" cy="130" rx="4.5" ry="3"/>
+              <ellipse class="blush" cx="140" cy="130" rx="4.5" ry="3"/>
+              <!-- 팔: 몸 옆을 따라 내려와 책을 잡은 손으로 -->
+              <path class="c-leaf" d="M108 160C98 172 96 194 106 202C112 206 120 200 118 192C114 182 114 172 116 164Z"/>
+              <path class="c-leaf" d="M144 160C156 172 158 194 148 202C142 206 134 200 136 192C140 182 140 172 136 164Z"/>
+              <!-- 책 -->
+              <path class="c-cream" d="M106 178L127 173L148 178V198L127 193L106 198Z"/>
+              <path class="ln thin" d="M127 173V193M111 184L122 181M132 181L143 184"/>
+              <circle class="c-cream" cx="109" cy="192" r="6"/>
+              <circle class="c-cream" cx="145" cy="192" r="6"/>
+              <!-- 잠든 고양이 -->
+              <path class="ln" d="M86 236C96 236 98 226 90 222"/>
+              <path class="c-border" d="M34 240C32 222 50 212 68 216C84 218 90 230 86 240Z"/>
+              <path class="c-roast" d="M60 216C72 214 82 222 84 232C76 228 68 226 62 228Z"/>
+              <path class="c-border" d="M35 220L33 208L43 215Z"/>
+              <path class="c-border" d="M47 214L53 205L54 217Z"/>
+              <circle class="c-border" cx="44" cy="226" r="11"/>
+              <path class="ln thin" d="M38 228Q40 230 42 228M46 228Q48 230 50 228"/>
+              <path class="ln thin" d="M62 192H70L62 200H70M74 178H80L74 184H80"/>
+              <!-- 머그컵 -->
+              <rect class="c-cream" x="252" y="214" width="22" height="24" rx="3"/>
+              <path class="ln" d="M274 220Q282 220 282 226Q282 232 274 232"/>
+              <path class="steam" d="M258 206C254 200 262 196 258 190M268 206C264 200 272 196 268 190"/>
+            </g>
+          </defs>
+          <use href="#art-reading" class="ill-paint" transform="translate(3 3)"/>
+          <use href="#art-reading" class="ill-ink"/>
+        </svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== 푸터 ========== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <a class="logo" href="index.html" aria-label="어떤원두 홈">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M10 11a6 6 0 1 1 9 5.2c-1.9 1.1-3 2.4-3 4.3v.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="16" cy="27" rx="2.6" ry="3.2" transform="rotate(30 16 27)" fill="currentColor"/>
+        </svg>
+        <span>어떤원두</span>
+      </a>
+      <p class="site-footer__info">
+        <span>대표 정하준</span>
+        <span>설립 2023년 9월</span>
+        <span>문의 TODO(확인 필요)</span>
+      </p>
+      <p class="caption">수업용 가상 회사입니다. 등장하는 회사·인물·수치는 모두 지어낸 것입니다.</p>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+</body>
+</html>

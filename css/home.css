@@ -1,0 +1,361 @@
+/* 메인 페이지 전용 스타일 */
+
+/* ---------- 히어로 ---------- */
+.hero {
+  padding-block: var(--space-64);
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-48);
+  align-items: center;
+}
+
+.hero__desc {
+  max-width: var(--measure);
+  margin-top: var(--space-24);
+  color: var(--color-mocha-gray);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  margin-top: var(--space-32);
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    padding-block: var(--space-96);
+  }
+
+  .hero__inner {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-64);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__actions .button {
+    flex: 1 1 100%;
+  }
+}
+
+/* 히어로 오른쪽: 취향 테스트 미리보기 (그림 역할, 조작하지 않음) */
+.test-preview {
+  margin: 0;
+  max-width: calc(var(--measure) * 0.75);
+  padding: var(--space-24);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-cream);
+  box-shadow: var(--shadow-float);
+}
+
+.test-preview__label {
+  margin-bottom: var(--space-16);
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+}
+
+.progress__count {
+  color: var(--color-mocha-gray);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-caption);
+}
+
+.progress__track {
+  flex: 1;
+  height: var(--space-8);
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.progress__bar {
+  width: 20%;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-question-yellow);
+}
+
+.choice-list {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-24);
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  min-height: var(--control-height);
+  padding: var(--space-16);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-cream);
+  color: var(--color-espresso);
+  font-weight: var(--font-weight-semibold);
+}
+
+.choice__check {
+  margin-left: auto;
+}
+
+/* 선택된 답변: Question Yellow + Espresso 글자 + 체크 아이콘 (색만으로 구분하지 않음) */
+.choice.is-selected {
+  border-color: var(--color-question-yellow);
+  background: var(--color-question-yellow);
+}
+
+/* ---------- 서비스 3단계 ---------- */
+.steps {
+  display: grid;
+  gap: var(--space-24);
+  margin-top: var(--space-48);
+  counter-reset: step;
+}
+
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-32) var(--space-24);
+  border-radius: var(--radius-card);
+  background: var(--color-latte);
+}
+
+.step__num {
+  color: var(--color-mocha-gray);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-caption);
+}
+
+.step__desc {
+  color: var(--color-mocha-gray);
+}
+
+/* ---------- 숫자로 보는 어떤원두 (Roast 강조 면) ---------- */
+.numbers {
+  background: var(--color-roast);
+  color: var(--color-on-roast);
+}
+
+.numbers .section__lead {
+  color: var(--color-on-roast);
+}
+
+.stats {
+  display: grid;
+  gap: var(--space-16);
+  margin-top: var(--space-48);
+}
+
+@media (min-width: 768px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-24);
+  border: var(--border-width) solid var(--color-on-roast);
+  border-radius: var(--radius-card);
+}
+
+.stat__value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-h2);
+}
+
+.stat__label {
+  font-weight: var(--font-weight-semibold);
+}
+
+.stat__note {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* ---------- 구독 안내 미리보기 ---------- */
+.subscribe-card {
+  display: grid;
+  gap: var(--space-24);
+  padding: var(--space-32) var(--space-24);
+  border-radius: var(--radius-card);
+  background: var(--color-latte);
+}
+
+@media (min-width: 1200px) {
+  .subscribe-card {
+    grid-template-columns: 7fr 5fr;
+    align-items: center;
+    padding: var(--space-48);
+  }
+}
+
+.subscribe-card__desc {
+  max-width: var(--measure);
+  margin-top: var(--space-16);
+  color: var(--color-mocha-gray);
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-24);
+  border-radius: var(--radius-card);
+  background: var(--color-cream);
+}
+
+.price__value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-h2);
+}
+
+.price .button--text {
+  align-self: flex-start;
+  margin-top: var(--space-8);
+}
+
+/* ---------- FAQ (아코디언) ---------- */
+.faq-list {
+  display: grid;
+  gap: var(--space-16);
+  max-width: calc(var(--measure) * 1.25);
+}
+
+.faq {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-cream);
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  min-height: var(--control-height);
+  padding: var(--space-16) var(--space-24);
+  border-radius: var(--radius-card);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq__question:hover {
+  background: var(--color-latte);
+}
+
+.faq__chevron {
+  margin-left: auto;
+  color: var(--color-roast);
+  transition: transform var(--duration-base) var(--easing);
+}
+
+.faq[open] .faq__chevron {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  padding: 0 var(--space-24) var(--space-24);
+  color: var(--color-mocha-gray);
+}
+
+/* ---------- 손그림 일러스트 배치 (공통 스타일은 illustration.css) ---------- */
+
+/* 히어로: 카드 위 고양이 + 카드 뒤에서 내다보는 원두 마스코트 */
+.hero__visual {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: calc(var(--measure) * 0.75);
+  padding-top: var(--space-64);
+}
+
+.test-preview {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-cat {
+  position: absolute;
+  top: calc(-1 * var(--space-8));
+  right: var(--space-32);
+  z-index: 2;
+  width: var(--space-96);
+}
+
+.hero-mascot {
+  position: absolute;
+  top: 45%;
+  left: calc(-1 * var(--space-48));
+  z-index: 0;
+  width: calc(var(--space-64) + var(--space-16));
+}
+
+@media (max-width: 767px) {
+  .hero-mascot {
+    display: none;
+  }
+}
+
+/* 서비스 3단계 카드 */
+.ill--step {
+  max-width: calc(var(--space-96) * 2 + var(--space-32));
+}
+
+/* 구독 안내 카드 */
+.ill--subscribe {
+  max-width: calc(var(--space-96) * 2 + var(--space-32));
+  margin-top: var(--space-24);
+}
+
+/* FAQ: 목록 옆에 일러스트 */
+.faq-layout {
+  display: grid;
+  gap: var(--space-48);
+  align-items: end;
+  margin-top: var(--space-48);
+}
+
+.ill--faq {
+  justify-self: center;
+  max-width: calc(var(--space-96) * 3);
+}
+
+@media (min-width: 1200px) {
+  .faq-layout {
+    grid-template-columns: 7fr 5fr;
+  }
+}
