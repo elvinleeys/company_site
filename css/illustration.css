@@ -1,0 +1,69 @@
+/*
+ * 손그림 일러스트 공통 스타일 (모든 페이지에서 사용)
+ *
+ * 그리는 법
+ * - 그림은 <defs> 안의 <g id="art-..."> 하나로 만들고, <use>로 두 번 그린다.
+ *   1) .ill-paint: 아래 층. 색 면만 살짝 어긋나게(translate) 깔아 손으로 칠한 듯한 색 번짐을 만든다.
+ *   2) .ill-ink:   위 층. 색 면 + 선 + 눈·입. 면이 불투명해서 뒤에 있는 선을 가린다.
+ * - 뒤에 있는 것부터 먼저 그린다. (예: 뒷머리 → 몸통 → 머리 → 앞머리 → 팔)
+ * - 필터(#ill-paint, #ill-sketch)와 마스코트(#mascot)는 각 페이지 <body> 맨 위의 숨긴 <svg>에 둔다.
+ * - 색은 디자인 토큰만 쓴다. Question Yellow는 물음표·선택된 답변을 그릴 때만 쓴다.
+ * - 크기(max-width)는 페이지 CSS에서 정한다.
+ */
+.ill {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ill-paint {
+  --line: none;
+  --line-soft: none;
+  --line-light: none;
+  --ink: none;
+  --blush: none;
+  opacity: 0.6;
+  filter: url(#ill-paint);
+}
+
+.ill-ink {
+  --line: var(--color-espresso);
+  --line-soft: var(--color-mocha-gray);
+  --line-light: var(--color-cream);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#ill-sketch);
+}
+
+/* 색 면 (선 층에서는 테두리) */
+.c-cream { fill: var(--fill, var(--color-cream)); stroke: var(--line); }
+.c-latte { fill: var(--fill, var(--color-latte)); stroke: var(--line); }
+.c-border { fill: var(--fill, var(--color-border)); stroke: var(--line); }
+.c-roast { fill: var(--fill, var(--color-roast)); stroke: var(--line); }
+.c-espresso { fill: var(--fill, var(--color-espresso)); stroke: var(--line); }
+.c-crema { fill: var(--fill, var(--color-crema)); stroke: var(--line); }
+.c-leaf { fill: var(--fill, var(--color-leaf)); stroke: var(--line); }
+.c-question { fill: var(--fill, var(--color-question-yellow)); stroke: var(--line); }
+
+/* 테두리 없이 면만 (바닥 그림자 등) */
+.nl { stroke: none; }
+
+/* 선만 */
+.ln { fill: none; stroke: var(--line); }
+.ln-light { fill: none; stroke: var(--line-light); }
+.thin { stroke-width: 1.5; }
+.bold { stroke-width: 4; }
+.steam { fill: none; stroke: var(--line-soft); stroke-width: 1.5; }
+
+/* 눈·점 같은 잉크 */
+.ink { fill: var(--ink, var(--color-espresso)); stroke: none; }
+
+/* 볼 터치 (위 층에만) */
+.blush { fill: var(--blush, var(--color-crema)); fill-opacity: 0.35; stroke: none; }
+
+/* 원두 마스코트는 크기를 키워도 선 두께가 그대로 */
+#mascot * {
+  vector-effect: non-scaling-stroke;
+}
