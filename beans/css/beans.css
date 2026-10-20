@@ -564,6 +564,26 @@ h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: 600; }
 .footer-brand { font-size: var(--fs-h3); font-weight: 600; line-height: var(--lh-h3); }
 .footer-info { font-size: var(--fs-sub); line-height: var(--lh-sub); }
 
+/* ---------- 등장 애니메이션 ---------- */
+/* 히어로: 페이지가 열리면 위에서부터 차례로 떠오른다 */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(var(--space-24)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero .container > * { animation: rise var(--motion-slow) var(--ease) both; }
+.hero .container > :nth-child(2) { animation-delay: calc(var(--motion-fast) / 2); }
+.hero .container > :nth-child(3) { animation-delay: var(--motion-fast); }
+.hero .container > :nth-child(4) { animation-delay: calc(var(--motion-fast) * 1.5); }
+
+/* 그 아래 요소: 화면에 들어올 때 차례로 나타난다 (JS가 .reveal / .is-visible 을 붙임) */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--space-24));
+  transition: opacity var(--motion-slow) var(--ease), transform var(--motion-slow) var(--ease);
+  transition-delay: calc(var(--i, 0) * var(--motion-fast) / 2);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
 /* ---------- 모션 줄이기 설정 존중 ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

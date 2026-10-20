@@ -17,6 +17,30 @@
 
   var currentMood = 'all';
 
+  /* ---------- 등장 애니메이션 ----------
+     화면에 들어온 요소에 .is-visible 을 붙이고, 한꺼번에 들어오면 0.5단계씩 차례로 나타낸다.
+     IntersectionObserver 가 없으면 .reveal 을 붙이지 않아 처음부터 보인다. */
+  var observer = null;
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(function (entries) {
+      var n = 0;
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.style.setProperty('--i', Math.min(n++, 5));
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+  }
+
+  function reveal(els) {
+    if (!observer) return;
+    Array.prototype.forEach.call(els, function (el) {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  }
+
   /* 선형 아이콘 (선 1.5px, 둥근 끝 — 굵기·끝 모양은 CSS) */
   var TASTE_ICONS = {
     acidity: '<ellipse cx="12" cy="13" rx="8" ry="6.5"/><path d="M12 6.5c0-2 1.5-3 3-3"/>',
@@ -86,6 +110,7 @@
 
     if (!list.length) {
       gridEl.innerHTML = '<li class="empty">아직 이 맛의 원두가 없어요. 다른 맛을 골라보실래요?</li>';
+      reveal(gridEl.children);
       return;
     }
 
@@ -101,6 +126,7 @@
         '<span class="bean-price">' + formatPrice(b.price) + ' <small>/ 200g</small></span>' +
         '</span></button></li>';
     }).join('');
+    reveal(gridEl.children);
   }
 
   gridEl.addEventListener('click', function (e) {
@@ -198,4 +224,8 @@
   renderCards();
   renderGlossary();
   renderCompare();
+
+  reveal(document.querySelectorAll(
+    '.section-title, .section .lead, .filters, .glossary, .compare-wrap, .cta-line, .caption'
+  ));
 })();
