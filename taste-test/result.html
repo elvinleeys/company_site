@@ -4,17 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>추천 결과 · 어떤원두</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
   <header class="site-header">
-    <div class="container">
-      <a class="logo" href="index.html"><span class="badge" aria-hidden="true">?</span>어떤원두</a>
+    <div class="container site-header__inner">
+      <a class="logo" href="../index.html" aria-label="어떤원두 홈">
+        <!-- 로고: 둥글고 두꺼운 물음표 + 커피콩 모양 점 -->
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M10 11a6 6 0 1 1 9 5.2c-1.9 1.1-3 2.4-3 4.3v.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="16" cy="27" rx="2.6" ry="3.2" transform="rotate(30 16 27)" fill="currentColor"/>
+        </svg>
+        <span>어떤원두</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기">
+        <svg class="icon menu-toggle__open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon menu-toggle__close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="index.html" aria-current="page">취향 테스트</a></li>
+          <li><a class="site-nav__link" href="../beans/index.html">원두 소개</a></li>
+          <li><a class="site-nav__link" href="../subscription/index.html">구독 안내</a></li>
+          <li><a class="site-nav__link" href="../story/index.html">브랜드 스토리</a></li>
+        </ul>
+      </nav>
+
+      <a class="button button--primary site-header__cta" href="index.html">내 원두 찾기</a>
     </div>
   </header>
 
-  <main class="container result">
+  <main id="main" class="container result">
     <section class="reveal">
       <div class="reveal-badge" id="reveal-badge" aria-hidden="true">
         <span class="mark-q">?</span><span class="mark-ex">!</span>
@@ -27,13 +54,32 @@
 
     <div class="actions">
       <!-- TODO(확인 필요): 구독 안내 페이지가 만들어지면 링크 연결 -->
-      <a class="btn btn-primary" href="../subscription/index.html">구독 시작</a>
+      <a class="btn btn-primary" data-page-primary href="../subscription/index.html">구독 시작</a>
       <a class="btn btn-text" href="index.html">테스트 다시 하기</a>
     </div>
 
     <p class="footnote">원두 사진은 Wikimedia Commons의 무료 이용 사진이에요. 가격과 맛 점수는 예시예요.</p>
   </main>
 
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <a class="logo" href="../index.html" aria-label="어떤원두 홈">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M10 11a6 6 0 1 1 9 5.2c-1.9 1.1-3 2.4-3 4.3v.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="16" cy="27" rx="2.6" ry="3.2" transform="rotate(30 16 27)" fill="currentColor"/>
+        </svg>
+        <span>어떤원두</span>
+      </a>
+      <p class="site-footer__info">
+        <span>대표 정하준</span>
+        <span>설립 2023년 9월</span>
+        <span>문의 TODO(확인 필요)</span>
+      </p>
+      <p class="caption">수업용 가상 회사입니다. 등장하는 회사·인물·수치는 모두 지어낸 것입니다.</p>
+    </div>
+  </footer>
+
+  <script src="../js/common.js"></script>
   <script src="data.js"></script>
   <script src="result.js"></script>
 </body>
