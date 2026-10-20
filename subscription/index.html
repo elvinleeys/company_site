@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>구독 안내 | 어떤원두</title>
+  <meta name="description" content="취향 질문과 시음 후기로 골라, 매달 집으로 보내드리는 어떤원두 구독. 용량과 배송 주기를 골라 보세요.">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 아이콘 스프라이트: 선 1.5px · 둥근 끝 · 24px 기준 (design-guide 8번) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-bean" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6" ry="9" transform="rotate(35 12 12)"/><path d="M8.5 6.5c3 1 1 4.5 3.5 5.5s0.5 4.5 3.5 5.5"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3.5v2M12 3.5v2"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M6 20h12l2-12H4l2 12z"/><path d="M9 8a3 3 0 0 1 6 0"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+  <!-- 공통 헤더 -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="../index.html" aria-label="어떤원두 홈으로">
+        <span class="logo__mark" aria-hidden="true">?</span>
+        <span>어떤원두</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        <span>메뉴</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../taste-test/index.html">취향 테스트</a></li>
+          <li><a class="site-nav__link" href="../beans/index.html">원두 소개</a></li>
+          <li><a class="site-nav__link" href="index.html" aria-current="page">구독 안내</a></li>
+          <li><a class="site-nav__link" href="../story/index.html">브랜드 스토리</a></li>
+        </ul>
+        <!-- 이 페이지의 Primary는 아래 "구독 시작하기" 하나뿐이라, 헤더 버튼은 Secondary로 둠 -->
+        <a class="btn btn--secondary" href="../taste-test/index.html">내 원두 찾기</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- 히어로 -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="q-badge" aria-hidden="true">?</span>
+          <h1 id="hero-title">매달 어떤 원두가<br>도착하면 좋을까요?</h1>
+          <p class="hero__lead">취향 질문과 시음 후기로 골라서, 한 달에 한 번 집으로 보내드려요. 용량과 배송 주기만 정해 주세요.</p>
+          <a class="btn btn--text" href="#plan">내 구독 만들어 보기</a>
+        </div>
+
+        <!-- 장식용 미리보기: 취향 테스트 질문이 이렇게 보여요 -->
+        <div class="bubble-demo" aria-hidden="true">
+          <div class="bubble">
+            <span class="q-badge">?</span>
+            <span class="bubble__text">아침엔 어떤 커피가 당기세요?</span>
+          </div>
+          <div class="answer-list">
+            <div class="answer">과일 같은 상큼한 맛</div>
+            <div class="answer answer--selected">
+              <svg class="icon icon--sm"><use href="#i-check"/></svg>
+              고소하고 묵직한 맛
+            </div>
+            <div class="answer">부드럽고 달콤한 맛</div>
+          </div>
+          <p class="bubble-demo__caption">취향 테스트는 이런 질문으로 진행돼요.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 구독 방식 -->
+    <section class="section" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section-title" id="how-title">어떻게 받아보나요?</h2>
+          <p class="section__desc">질문에 답하고, 마셔 보고, 후기를 남기면 돼요. 쉬운 네 걸음이에요.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
+            <span class="step__num">1단계</span>
+            <h3>질문에 답해요</h3>
+            <p class="step__desc">일상 속 상황과 취향을 묻는 질문 5개 안팎이에요. 커피를 잘 몰라도 괜찮아요.</p>
+          </li>
+          <li class="step">
+            <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-bean"/></svg></span>
+            <span class="step__num">2단계</span>
+            <h3>원두를 추천받아요</h3>
+            <p class="step__desc">취향 질문과 시음 후기로 골라드려요. 제휴 로스터리 약 60곳의 원두 중에서요.</p>
+          </li>
+          <li class="step">
+            <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span>
+            <span class="step__num">3단계</span>
+            <h3>집으로 도착해요</h3>
+            <p class="step__desc">아래에서 고른 용량과 배송 주기대로 원두가 찾아가요.</p>
+          </li>
+          <li class="step">
+            <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-cup"/></svg></span>
+            <span class="step__num">4단계</span>
+            <h3>마셔 보고 알려주세요</h3>
+            <p class="step__desc">맛이 어땠는지 남겨 주시면, 다음 달 추천에 반영해요.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 플랜 고르기 -->
+    <section class="section" id="plan" aria-labelledby="plan-title">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section-title" id="plan-title">
+            <span class="q-badge" aria-hidden="true">?</span>
+            얼마나 자주, 얼마나 받고 싶으세요?
+          </h2>
+          <p class="section__desc">용량과 배송 주기를 고르면 오른쪽에 요금이 바로 보여요.</p>
+        </div>
+
+        <!--
+          TODO(확인 필요): 아래 용량·배송 주기·요금은 제공된 자료가 없어 만든 "예시 데이터"입니다.
+          확정된 값은 평균 구독료 월 18,900원(원두 200g 기준) 하나뿐이에요.
+          data-price = 1회 배송 요금(원), data-times = 한 달 배송 횟수
+        -->
+        <form class="builder" id="plan-form" novalidate>
+          <div>
+            <fieldset class="choice-group">
+              <legend class="choice-group__legend">
+                한 번에 얼마나 받을까요?
+                <span class="choice-group__hint">한 잔 15g 기준으로 계산한 예시예요.</span>
+              </legend>
+              <div class="choice-grid choice-grid--3">
+                <label class="choice">
+                  <input class="choice__input" type="radio" name="size" value="100g" data-price="11900" data-times-label="100g · 약 6잔">
+                  <span class="choice__body">
+                    <span class="choice__title">100g</span>
+                    <span class="choice__desc">처음이라 가볍게 맛보고 싶어요. (약 6잔)</span>
+                    <span class="choice__price">11,900원</span>
+                    <span class="choice__check" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-check"/></svg></span>
+                  </span>
+                </label>
+                <label class="choice">
+                  <input class="choice__input" type="radio" name="size" value="200g" data-price="18900" data-times-label="200g · 약 13잔" checked>
+                  <span class="choice__body">
+                    <span class="choice__title">200g</span>
+                    <span class="choice__desc">한 달 동안 꾸준히 마시고 싶어요. (약 13잔)</span>
+                    <span class="choice__price">18,900원</span>
+                    <span class="choice__tag">평균 구독료 기준</span>
+                    <span class="choice__check" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-check"/></svg></span>
+                  </span>
+                </label>
+                <label class="choice">
+                  <input class="choice__input" type="radio" name="size" value="400g" data-price="34900" data-times-label="400g · 약 26잔">
+                  <span class="choice__body">
+                    <span class="choice__title">400g</span>
+                    <span class="choice__desc">매일 여러 잔 마셔요. (약 26잔)</span>
+                    <span class="choice__price">34,900원</span>
+                    <span class="choice__check" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-check"/></svg></span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="choice-group">
+              <legend class="choice-group__legend">
+                얼마나 자주 받을까요?
+                <span class="choice-group__hint">1회 요금은 같고, 받는 횟수만 달라져요.</span>
+              </legend>
+              <div class="choice-grid choice-grid--2">
+                <label class="choice">
+                  <input class="choice__input" type="radio" name="cycle" value="4주마다" data-times="1" checked>
+                  <span class="choice__body">
+                    <span class="choice__title">4주마다</span>
+                    <span class="choice__desc">한 달에 한 번, 느긋하게 받아요.</span>
+                    <span class="choice__check" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-check"/></svg></span>
+                  </span>
+                </label>
+                <label class="choice">
+                  <input class="choice__input" type="radio" name="cycle" value="2주마다" data-times="2">
+                  <span class="choice__body">
+                    <span class="choice__title">2주마다</span>
+                    <span class="choice__desc">한 달에 두 번, 늘 신선하게 받아요.</span>
+                    <span class="choice__check" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-check"/></svg></span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <aside class="summary" aria-labelledby="summary-title">
+            <h3 id="summary-title">내가 고른 구독</h3>
+            <dl class="summary__list" aria-live="polite">
+              <div class="summary__row"><dt>용량</dt><dd data-out="size">200g · 약 13잔</dd></div>
+              <div class="summary__row"><dt>배송 주기</dt><dd data-out="cycle">4주마다</dd></div>
+              <div class="summary__row"><dt>1회 요금</dt><dd data-out="unit">18,900원</dd></div>
+              <div class="summary__row"><dt>한 달 배송</dt><dd data-out="times">1회</dd></div>
+            </dl>
+            <p class="summary__total" aria-live="polite">
+              <span class="summary__total-label">한 달 예상 요금</span>
+              <span class="summary__total-price" data-out="total">18,900원</span>
+            </p>
+            <button class="btn btn--primary btn--block" type="submit">구독 시작하기</button>
+            <p class="small">요금과 옵션은 예시예요. 이 사이트는 소개용이라 실제 결제는 진행되지 않아요.</p>
+          </aside>
+        </form>
+      </div>
+    </section>
+
+    <!-- 숫자로 보는 어떤원두 -->
+    <section class="section" aria-labelledby="stats-title">
+      <div class="container">
+        <div class="section__head">
+          <h2 id="stats-title">숫자로 보는 어떤원두</h2>
+        </div>
+        <ul class="stats">
+          <li class="stat">
+            <span class="stat__value">약 1만 2천 명</span>
+            <span class="stat__label">어떤원두와 함께하는 구독자</span>
+            <span class="small">2026년 9월 기준</span>
+          </li>
+          <li class="stat">
+            <span class="stat__value">약 60곳</span>
+            <span class="stat__label">제휴 로스터리</span>
+            <span class="small">서울 25 · 경기 15 · 기타 20</span>
+          </li>
+          <li class="stat">
+            <span class="stat__value">월 18,900원</span>
+            <span class="stat__label">평균 구독료</span>
+            <span class="small">원두 200g 기준</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section-title" id="faq-title">
+            <span class="q-badge" aria-hidden="true">?</span>
+            궁금한 게 있으세요?
+          </h2>
+        </div>
+
+        <div class="faq">
+          <details class="faq__item">
+            <summary class="faq__q">커피를 잘 몰라도 괜찮을까요?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+            <p class="faq__a">그럼요. 질문은 "아침엔 어떤 커피가 당기세요?"처럼 일상 속 상황과 취향으로 물어봐요. 어려운 커피 용어를 몰라도 답할 수 있어요.</p>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__q">원두는 어떻게 골라주나요?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+            <p class="faq__a">취향 질문과 시음 후기로 골라드려요. 맛이 어땠는지 알려 주시면 다음 달 추천에 반영해요.</p>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__q">원두는 어디서 오나요?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+            <p class="faq__a">어떤원두와 함께하는 제휴 로스터리 약 60곳(서울 25, 경기 15, 기타 20)에서 와요.</p>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__q">한 달에 얼마예요?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+            <p class="faq__a">평균 구독료는 <strong>월 18,900원</strong>(원두 200g 기준)이에요. 이 페이지의 용량별 요금과 배송 주기는 예시라서, 실제 서비스와 다를 수 있어요.</p>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__q">어디서 이용할 수 있나요?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+            <p class="faq__a">모바일 웹, iOS 앱, Android 앱에서 이용할 수 있어요.</p>
+          </details>
+          <!-- TODO(확인 필요): 해지·일시정지·환불·배송 지역 등은 제공된 자료가 없어 FAQ에 넣지 않았습니다. -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 마무리 -->
+    <section class="section" aria-labelledby="closing-title">
+      <div class="container">
+        <div class="closing">
+          <h2 id="closing-title">아직 내 입맛을 모르겠다면?</h2>
+          <p>질문 5개면, 내 원두가 정해져요. 먼저 가볍게 해 보세요.</p>
+          <a class="btn btn--text" href="../taste-test/index.html">취향 테스트 해 보기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div>
+        <a class="logo" href="../index.html" aria-label="어떤원두 홈으로">
+          <span class="logo__mark" aria-hidden="true">?</span>
+          <span>어떤원두</span>
+        </a>
+        <p class="small">취향 설문과 시음 피드백을 바탕으로 나에게 맞는 커피를 추천해 매달 집으로 보내주는 월간 커피 구독 서비스</p>
+      </div>
+      <div>
+        <dl class="company-info">
+          <div><dt>설립</dt><dd>2023년 9월</dd></div>
+          <div><dt>대표</dt><dd>정하준</dd></div>
+          <div><dt>팀</dt><dd>24명</dd></div>
+          <div><dt>서비스</dt><dd>모바일 웹, iOS·Android 앱</dd></div>
+          <!-- TODO(확인 필요): 문의 연락처(이메일·전화)는 제공된 자료가 없어 비워 둠 -->
+        </dl>
+        <p class="small">수업용 가상 회사입니다. 등장하는 회사·인물·수치는 모두 지어낸 것입니다.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 소개용 체험 안내 -->
+  <dialog class="demo-dialog" id="demo-dialog" aria-labelledby="demo-title">
+    <div class="demo-dialog__body">
+      <h2 id="demo-title">구독 신청은 체험까지만 열려 있어요</h2>
+      <p class="demo-dialog__summary" data-out="dialog-summary">200g · 4주마다 · 한 달 18,900원</p>
+      <p>이 사이트는 서비스 소개용이라 실제 결제나 신청은 진행되지 않아요. 고른 구성은 이런 느낌이에요.</p>
+      <div class="demo-dialog__actions">
+        <button class="btn btn--secondary" type="button" data-close-dialog>닫기</button>
+        <a class="btn btn--text" href="../taste-test/index.html">취향 테스트 해 보기</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
