@@ -381,16 +381,17 @@ a { color: inherit; }
 
 .choice-grid { display: grid; gap: var(--space-3); }
 
-.choice { position: relative; display: block; cursor: pointer; }
+.choice { position: relative; display: flex; cursor: pointer; }
 .choice__input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 
 .choice__body {
   position: relative;
   display: grid;
+  flex: 1;                 /* 같은 줄 카드는 가장 큰 카드 높이에 맞춤 */
+  align-content: start;
   gap: var(--space-1);
   min-height: var(--tap-min);
   padding: var(--space-4);
-  padding-right: var(--space-7);
   border-radius: var(--radius-card);
   background: var(--color-cream);
   border: var(--focus-width) solid var(--color-border);
@@ -400,7 +401,8 @@ a { color: inherit; }
 }
 .choice:hover .choice__body { background: var(--color-latte); }
 
-.choice__title { font-size: var(--fs-h3); font-weight: 600; line-height: var(--lh-h3); }
+/* 체크 아이콘과 겹치지 않도록 제목 줄만 오른쪽을 비우고, 설명은 카드 전체 너비를 씀 */
+.choice__title { padding-right: var(--space-6); font-size: var(--fs-h3); font-weight: 600; line-height: var(--lh-h3); }
 .choice__desc { color: var(--color-mocha-gray); }
 .choice__price { font-weight: 700; }
 .choice__tag {
