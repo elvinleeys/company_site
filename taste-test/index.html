@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>취향 테스트 · 어떤원두</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><span class="badge" aria-hidden="true">?</span>어떤원두</a>
+    </div>
+  </header>
+
+  <main class="container test">
+    <div class="progress">
+      <p id="progress-text" aria-live="polite">1/5</p>
+      <div class="bar" id="bar" role="progressbar" aria-label="질문 진행 정도" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+        <div class="bar-fill" id="bar-fill"></div>
+      </div>
+    </div>
+
+    <div id="question-area">
+      <div class="bubble">
+        <span class="badge" aria-hidden="true">?</span>
+        <h1 id="question" tabindex="-1"></h1>
+      </div>
+      <div class="options" id="options"></div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="btn btn-secondary" id="prev">이전</button>
+      <button type="button" class="btn btn-primary" id="next">다음</button>
+    </div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="test.js"></script>
+</body>
+</html>
