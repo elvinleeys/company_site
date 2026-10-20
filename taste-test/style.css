@@ -66,29 +66,11 @@ ul, ol { list-style: none; }
   white-space: nowrap;
 }
 
-.container {
+main.container {
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
   padding-inline: 20px;
-}
-
-/* 헤더 */
-.site-header {
-  background: var(--color-roast);
-  color: var(--color-white);
-  padding: var(--space-16) 0;
-}
-
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  min-height: 44px;
-  color: inherit;
-  font-size: var(--fs-h3);
-  font-weight: 600;
-  text-decoration: none;
 }
 
 /* 물음표 배지 */
@@ -297,7 +279,7 @@ ul, ol { list-style: none; }
 
 /* 태블릿 */
 @media (min-width: 768px) {
-  .container { padding-inline: var(--space-32); }
+  main.container { padding-inline: var(--space-32); }
   .options { grid-template-columns: 1fr 1fr; }
 }
 
