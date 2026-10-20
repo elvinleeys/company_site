@@ -159,8 +159,8 @@
       '<div class="taste-list">' + rows + '</div>' +
       '<p class="bean-price">' + formatPrice(b.price) + ' <small>/ 200g</small></p>' +
       '<div class="dialog-actions">' +
-      '<button type="button" class="btn btn-secondary" data-close>다른 원두 보기</button>' +
-      '<a class="btn btn-text" href="../taste-test/index.html">내 취향인지 테스트해 보기</a>' +
+      '<button type="button" class="button button--secondary" data-close>다른 원두 보기</button>' +
+      '<a class="button button--text" href="../taste-test/index.html">내 취향인지 테스트해 보기</a>' +
       '</div></div>';
 
     document.body.classList.add('is-locked');
@@ -185,7 +185,7 @@
   }
 
   function renderCompare() {
-    var head = '<caption class="sr-only">원두별 맛 비교표</caption><thead><tr><th scope="col">원두</th>' +
+    var head = '<caption class="visually-hidden">원두별 맛 비교표</caption><thead><tr><th scope="col">원두</th>' +
       tasteLabels.map(function (t) { return '<th scope="col">' + t.label + '</th>'; }).join('') + '</tr></thead>';
 
     var body = '<tbody>' + beans.map(function (b) {
@@ -198,34 +198,12 @@
     tableEl.innerHTML = head + body;
   }
 
-  /* ---------- 모바일 메뉴 ---------- */
-  var toggle = document.querySelector('.menu-toggle');
-  var nav = document.getElementById('site-nav');
-
-  function setMenu(open) {
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
-    nav.classList.toggle('is-open', open);
-  }
-  toggle.addEventListener('click', function () {
-    setMenu(toggle.getAttribute('aria-expanded') !== 'true');
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-      setMenu(false);
-      toggle.focus();
-    }
-  });
-  window.matchMedia('(min-width: 768px)').addEventListener('change', function (e) {
-    if (e.matches) setMenu(false);
-  });
-
   renderFilters();
   renderCards();
   renderGlossary();
   renderCompare();
 
   reveal(document.querySelectorAll(
-    '.section-title, .section .lead, .filters, .glossary, .compare-wrap, .cta-line, .caption'
+    '.section__title, .section .section__lead, .filters, .glossary, .compare-wrap, .cta-line, .bean-note'
   ));
 })();
